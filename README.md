@@ -13,7 +13,7 @@
 
 <br>
 
-`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/didJavaScriptFunctionRun/blob/main/index.html)
+`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html)
 
 <!--`Ctrl + click` to view instructional video on [![YouTube](support/video.jpg)](CHANGE)-->
 
