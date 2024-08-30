@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta name="description" content="Support page for template repository didJavaScriptFunctionRun on GitHub.">
+ <meta name="keywords" content="javascript, function, load, code, html, php, browser, template, form, submit, server, random, script, tmp"> 
+ <title>Did JavaScript Function Run</title>
+ 
+ <link rel="icon" href="favicon.png">
+  
+ <script src="sample_didJavaScriptFunctionRun.js"></script>
+ 
+ <style>
+  body {
+   margin-left: 50px;
+  }
+  body header, body main, body article.sample {
+   margin-left: 175px;
+  }
+  nav {
+   display: inline-block;
+   position: fixed;
+   max-width: 300px;
+   height: 15%;
+   left: 0px;
+   top: 0px;
+   background: limegreen;
+   color: white;
+  }
+  nav ul li {
+   margin-top: 25px;
+   padding-right: 10px;
+   margin-left: -20px;
+  }  
+  .note, .headBox {
+   border-left: 5px solid limegreen;
+   padding-left: 10px;
+  }  
+  header div.headBox {
+   max-width: 85%;
+   background: rgba(245,255,250,.95);   
+   padding: 10px;  
+  }
+  header p {
+   max-width: inherit !important;
+  } 
+  a {
+   cursor: pointer;
+   font-family: sans-serif;
+   font-size: 14pt;   
+  }
+  a:hover {
+   text-decoration: underline;
+  }
+  div, a {
+   display: inline-block;
+   position: relative;
+   box-sizing: border-box;
+  }
+  div, footer {
+   max-width: 100%;
+  }
+  main {
+   margin: 30px;
+  }
+  h1 {
+   font-family: monospace, system-ui, sans-serif;
+  }
+  h2 {
+   text-decoration: underline;
+  }
+  h2, h3, p {
+   font-family: system-ui, sans-serif;
+  }
+  p {   
+   max-width: 1000px;   
+  }
+  code.codeBox {
+   border-left: 5px solid black;
+   box-sizing: border-box;
+   display: block;
+   padding-left: 50px;
+  }
+  code.snippet {
+   border: none;
+   background: ivory;
+   padding: 0px 2px;
+  }
+  button {
+   margin: 10px;
+   padding: 15px;
+   cursor: pointer;
+   border-radius: 10px;
+   color: white;
+  }
+  button.showHide {
+   display: block; 
+   width: 250px;
+   background: black;
+   color: white;   
+  }
+  button.showHide.black {
+   display: block; 
+   padding: 2px;
+  }  
+  button.showHide.gray {
+   display: block; 
+   background: darkslategray;
+   padding: 2px;
+  }
+  button.showHide.main + div {
+   /*border: 1px solid black;*/
+   padding: 5px;
+   background: #f9ffff;
+  }
+  button.showHide.gray + div,
+  button.showHide.black + div {
+   background: #f6f6f6;
+   padding: 5px;
+  }  
+  button.showHide.gray + div:hover,
+  button.showHide.black + div:hover {
+   border: 2px solid black;
+  }
+  button[id^="did"] {
+   width: 350px;
+  }  
+  button#did {
+   background: navy;
+  }
+  button#didnot {
+   background: darkred;   
+  }
+  span.tag {
+   color: darkblue;
+  }
+  span.key {
+   color: #0073e6;
+  }
+  span.str {
+   color: #ce4000;
+  }
+  span.int {
+   color: green;
+  }
+  span.mthd {
+   color: purple;
+  }
+  span.red {
+   color: red;
+  }
+  em {
+   color: dimgray;
+  }
+  footer {      
+   bottom: 0px;   
+   background: black;
+   color: white;
+   margin-left: -50px; 
+   padding: 50px;   
+  }
+  footer a img.footImg:hover {
+   border: 2px solid white;
+   border-radius: 10px;
+   paddgin: 10px;
+  }
+ </style>
+</head>
+
+<body>
+ <nav>
+  <ul style="list-style-type: none">
+   <li><a data-id="linkOne" 
+    onclick="
+    let pageURI;
+    if (location.href.indexOf('localhost') > -1) {
+     pageURI = 'http://localhost:9090/';
+    } else {
+     pageURI = 'https://jhauga.github.io/htmlpreview.github.com/?https://github.com/nobedee/didJavaScriptFunctionRun/blob/main/index.html';     
+    }
+    location.href = pageURI + '#' + this.dataset.id;
+   ">How template Works</a></li>
+   <li><a data-id="linkTwo" 
+    onclick="
+    let pageURI;
+    if (location.href.indexOf('localhost') > -1) {
+     pageURI = 'http://localhost:9090/';
+    } else {
+     pageURI = 'https://jhauga.github.io/htmlpreview.github.com/?https://github.com/nobedee/didJavaScriptFunctionRun/blob/main/index.html';     
+    }
+    location.href = pageURI + '#' + this.dataset.id;
+   ">Sample Returns</a></li>
+  </ul>
+ </nav>
+ <header>
+  <h1>Did JavaScript Function Run:</h1>
+  <hr>
+  <div class="headBox"> 
+  <p><strong>NOTE</strong> - this template is meant for simple HTML forms that are served via PHP (i.e. <em>contact.php</em>). It is a starting point for running server code (<em>php most likely</em>) based on whether the page was loaded in a browser. It can be used as is (<em>as templates are used</em>) if the form is submitted and processed on the same page i.e. action="<code class="snippet">&lt;<span class="red">?php</span> echo <span class="mthd">$_SERVER</span>[<span class="str">"PHP_SELF"</span>]; ?&gt;</code>"; or altered to meet your needs. For help on getting started see the example below, or watch the <a href="javascript:void(0)" target="_blank" rel="external">YouTube Instructional Video</a>.</p>
+  </div>
+</header>
+
+ <main>
+  <h2 id="linkOne">How the Template Works</h2>
+  <article>
+   <h3>Overview:</h3>
+   <section>
+    <p>
+    The script file <strong>didJavaScriptFunctionRun.js</strong> is sourced in the HTML head, defining main variable - <span class="mthd"><strong>didJavaScriptFunctionRunCheck</strong></span>. It also makes an AJAX call to create the elements via PHP using <code class="snippet">scripts/make_random_file.php</code>. The end result is a PHP variable - <span class="mthd"><strong>$didJavaScriptFunctionRun</strong></span>; that stores a value of 1 or 0. With that run code on the server accordingly.
+    <br><br>
+    Essentially the main goal of the template is to utulize a condition like the one below:
+    </p>
+   </section>
+
+   <section>
+    <code class="codeBox"><pre> 
+    <span class="str">&lt;?php</span>
+     <span class="key">if</span> ( <span class="mthd">$didJavaScriptFunctionRunCheck</span> == <span class="int">1</span> ) { // <em>DID load in browser</em>
+       <em>// server's response</em>
+       echo <span class="str">"Form Submitted"</span>;
+     } <span class="key">else</span> { // <em>did NOT load in browser</em>
+       echo <span class="str">" "</span>;       
+     }
+    <span class="str">?&gt;</span>
+    </pre></code> 
+   </section>      
+  </article>   
+
+  <article>
+   <h3>Getting Started:</h3>
+    <p>Click below to see an example with instructions of how/where to place inline code for php page:</p>
+   <code class="codeBox">
+    <p class="note"><strong>NOTE</strong> - click in example boxes to copy to clipboard.</p>
+    <button class="showHide main"
+     onclick="showHideExample(this)">Show Example Use</button>
+
+    <!--------------------------------------------------------------------------------------
+    EXAMPLE AREA 
+    ************
+    ---------------------------------------------------------------------------------------->
+    <div style="display:none">
+     <pre id="exampleArea">
+
+    <strong>&lt;!DOCTYPE html&gt;</strong>
+    <span class="tag">&lt;html&gt;</span>
+    <span class="tag"> &lt;head&gt;</span>
+      <span class="tag">&lt;title&gt;</span>Page Title<span class="tag">&lt;/title&gt;</span>
+    <div class="example" style="display:none"></div> <!-- skip step 1 - cmd -->
+    <section><button class="showHide gray"
+     onclick="showHideExample(this)"> Show Example Script Tag: </button>
+    <div class="example" style="display:none">
+     &lt;script src="/didJavaScriptFunctionRun/didJavaScriptFunctionRun.js"&gt;&lt;/script&gt;
+    </div> </section>   
+     <span class="tag">&lt;/head&gt;</span>
+
+     <span class="tag">&lt;body&gt;</span> 
+     <span class="red">&lt;?php</span>
+
+      <em>// Simple PHP form handling.</em>
+      <span class="mthd">$email</span> = <span class="mthd">$comment</span> = <span class="str">""</span>;
+      if (<span class="mthd">$_SERVER</span>[<span class="str">"REQUEST_METHOD"</span>] == <span class="str">"POST"</span>) {
+       if (empty(<span class="mthd">$_POST</span>["email"])) {
+        <span class="mthd">$email</span> = <span class="str">"Email is required"</span>;
+       } else {
+        <span class="mthd">$email</span> = <span class="mthd">$_POST</span>[<span class="str">"email"</span>];
+       }
+       if (empty(<span class="mthd">$_POST</span>[<span class="str">"comment"</span>])) {
+        <span class="mthd">$comment</span> = <span class="str">""</span>;
+       } else {
+        <span class="mthd">$comment</span> = <span class="mthd">$_POST</span>[<span class="str">"comment"</span>];
+       }
+      }
+
+     <span class="red">?&gt; </span>
+    <section><button class="showHide black"
+     onclick="showHideExample(this)"> Show Example PHP Include PHP: </button>
+    <div class="example" style="display:none">
+      &lt;?php
+
+       // IMPORTANT - Change to a name of a required form element.  
+       $name_of_required_form_field = "email";
+
+       // Include didJavaScriptFunctionRun.php using absolut path from the root to didJavaScriptFunctionRun folder.
+       $did_javascript_function_run_path  = $_SERVER['DOCUMENT_ROOT'];   
+       $did_javascript_function_run_path .= "/didJavaScriptFunctionRun";
+       $did_javascript_function_run_PHP_FILE = $did_javascript_function_run_path . "/didJavaScriptFunctionRun.php";
+       include_once($did_javascript_function_run_PHP_FILE);
+
+      ?&gt;
+    </div>  </section>
+      <span class="tag">&lt;form</span> <span class="int">method</span>="post" 
+        <span class="int">action</span>="<span class="red">&lt;?php</span> echo htmlspecialchars($_SERVER["PHP_SELF"]);<span class="red">?&gt;</span>"<span class="tag">&gt;</span>
+    <section><button class="showHide gray"
+     onclick="showHideExample(this)"> Show Example Form Elements: </button>
+    <div class="example" style="display:none">
+       &lt;input type="text" value="&lt;?php echo $didJavaScriptFunctionRunID; ?&gt;" disabled style="display: none; border:none" id="didJavaScriptFunctionRunID" name="didJavaScriptFunctionRunID"&gt; 
+       &lt;script&gt;{let didJavaScriptFunctionRunCheck_ID = document.getElementById("didJavaScriptFunctionRunID"); 
+        didJavaScriptFunctionRunCheck_ID.removeAttribute("disabled");let checkSessionDidJavaScriptFunctionRun = sessionStorage.getItem("didJavaScriptRun");if (checkSessionDidJavaScriptFunctionRun == null) { sessionStorage.setItem("didJavaScriptRun", "1"); didJavaScriptFunctionRun();} else { sessionStorage.removeItem("didJavaScriptRun"); let sessionDidJavaScriptFunctionRunCheck_randomCharacters = sessionStorage.getItem("didJavaScriptFunctionRunCheck_randomCharacters"); document.getElementById("didJavaScriptFunctionRunID").setAttribute("value", sessionDidJavaScriptFunctionRunCheck_randomCharacters); }}&lt;/script&gt;  
+    </div>   </section>
+        <span class="tag">&lt;label</span> <span class="int">for</span>="email"<span class="tag">&gt;</span>Email Address: <span class="red">*</span> <span class="tag">&lt;/label&gt;	</span>
+        <span class="tag">&lt;input</span> <span class="int">type</span>="text" <span class="int">id</span>="email" <span class="int">name</span>="email" 
+          <span class="int">value</span>="<span class="red">&lt;?php</span> echo $email;<span class="red">?&gt;</span>" 
+          <span class="int">placeholder</span>="your@email.com" required="required"/<span class="tag">&gt;</span>
+
+        <span class="tag">&lt;br&gt;&lt;br&gt;</span>
+
+        <span class="tag">&lt;label</span> <span class="int">for</span>="comment"<span class="tag">&gt;</span>Enter Comment:<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;textarea</span> <span class="int">name</span>="comment" <span class="int">id</span>="comment" <span class="int">rows</span>="5"<span class="tag">&gt;</span>
+         <span class="red">&lt;?php</span> echo $comment;<span class="red">?&gt;</span>
+        <span class="tag">&lt;/textarea&gt;</span>        
+        <section>        <em>&lt;!-- </em>
+        <em><strong>IMPORTANT</strong> - make sure to add/or change submit button id.</em>
+        <em>--&gt;</em></section>
+        <div class="example" style="display:none"></div> <!-- skip step 4b-i  - change submit id --><div class="example" style="display:none"></div> <!-- skip step 4b-ii - change submit id -->    
+        <span class="tag">&lt;input</span> id="submitButtonDidJavaScriptRun" type="submit" value="Submit"/<span class="tag">&gt; </span>
+      <span class="tag">&lt;/form&gt;</span> 
+    <section><button class="showHide black"
+     onclick="showHideExample(this)"> Show Example Verifying PHP: </button>
+    <div class="example" style="display:none">
+      &lt;?php
+       // Making sure to include the absolut path from site root to didJavaScriptFunctionRun folder.
+       // Set path.
+       $did_javascript_function_run_path  = $_SERVER['DOCUMENT_ROOT'];   
+       $did_javascript_function_run_path .= "/didJavaScriptFunctionRun"; 
+       if (strlen($didJavaScriptFunctionRunID) &gt; 1) {
+        // Clean
+        $didJavaScriptFunctionRunID = trim($didJavaScriptFunctionRunID); 
+        $didJavaScriptFunctionRunID = htmlspecialchars($didJavaScriptFunctionRunID); 
+        $didJavaScriptFunctionRunID = preg_replace('/[.\/]/', "", $didJavaScriptFunctionRunID);      
+       }
+       if (file_exists("$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID/file.txt")) {
+        // Blocks where JavaScript did run.
+        // Remove the random files created.
+        `rm "$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID/file.txt"`;
+        `rmdir "$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID"`;  
+        $didJavaScriptFunctionRun = 1;
+       } else {
+        $didJavaScriptFunctionRun = 0;
+       }
+       // PHP - Condition if $didJavaScriptFunctionRun == 1, else do something else.
+       if ($didJavaScriptFunctionRun == 1) {    
+        // JavaScript Function did run so block runs on server.  
+
+        if ($comment == true and $email == true and $emailErr == "") {
+         mail("serverMail@example.com", "Web Comment", $comment, $email);
+         echo $formSub;
+        } elseif ($comment == true or $email == true or $emailErr == true) {
+         echo '
+          &lt;div class="page-headline text-left"&gt;
+           &lt;h1&gt;Form NOT Submitted&lt;/h1&gt;
+           &lt;p class="lead"&gt;Refresh page and fill in required fields and try again.&lt;/p&gt;
+          &lt;/div&gt;';
+        }       
+        // NOTE - if no submit button id then add one and change it here or a variation of this method.
+        //        if not disabled form will not submit on second press and run will created random folder,
+        //        leaving them there for a day before deleting.
+        echo &lt;&lt;&lt; DISABLE_SUBMIT_DID_JAVASCRIPT_FUNCTION_RUN
+         &lt;script&gt;
+          sessionStorage.setItem("formSubmittedDidJavaScriptFunctionRun", "1");
+                                                                     // CHANGE TO SUBMIT BUTTON ID
+          var submitButtonDidJavaScriptRun = document.getElementById("submitButtonDidJavaScriptRun");
+          if (submitButtonDidJavaScriptRun) {      
+          var submitButtonDidJavaScriptRun = document.getElementById("submitButtonDidJavaScriptRun");
+          setTimeout(function() {
+           submitButtonDidJavaScriptRun.setAttribute("disabled", true);
+          }, 500);
+         &lt;/script&gt;
+    DISABLE_SUBMIT_DID_JAVASCRIPT_FUNCTION_RUN;
+       }  else {
+        // Blocks where JavaScript did not run.
+        echo " ";
+       }
+      ?&gt;  
+    </div></section>
+    <section><button class="showHide gray"
+     onclick="showHideExample(this)"> Show Example Diable Submit Button: </button>
+    <div class="example" style="display:none">
+     &lt;script&gt;
+      var formSubmittedDidJavaScriptFunctionRun = sessionStorage.getItem("formSubmittedDidJavaScriptFunctionRun");
+      if (formSubmittedDidJavaScriptFunctionRun != null) {
+       let submitButtonDidJavaScriptRun = document.getElementById("submitButtonDidJavaScriptRun");
+       submitButtonDidJavaScriptRun.setAttribute("disabled", true); 
+      }
+     &lt;/script&gt;   
+    </div> </section>     <span class="tag">&lt;/body&gt;</span>
+    <span class="tag">&lt;/html&gt;</span>
+      </pre>
+    </div>
+   </code>
+  </article>
+ </main>
+ 
+ <hr>
+
+ <article class="sample">
+  <h2 id="linkTwo">Sample Returns</h2>
+  <p class="note">
+  <strong>NOTE</strong> - the sample below shows the php output (<em>from remote server</em>) for example purposes. The code has been altered slightly from the original.
+  </p>
+  <section>
+   <p>
+   One button calls <span class="mthd">didJavaScriptFunctionRun</span>() in <span class="int">onclick</span> method, and the other doesn't;
+   <br><br>
+   <span class="note" id="phpNote"></span>
+   <br><br>
+   When used on a php page, the random characters are used to create a file via AJAX, and then PHP is used to check against that file ensuring JavaScript did run in the browser.      
+   </p>
+  </section>
+  <section>
+   <form>
+    <label for="fname">Enter Name:</label><br>
+    <input type="text" id="fname" name="fname" value=""> 
+
+    <br><br>
+
+    <div id="hideCheck" style="display:none">
+     <label for="didJavaScriptFunctionRunID">Did JavaScript Run in Browser:</label><br>
+     <input type="text" value="" disabled style="border:none"
+      id="didJavaScriptFunctionRunID" name="didJavaScriptFunctionRunID"> 
+    </div>  
+
+    <!-- For sample output -->
+    <p id="out"></p> 
+
+    <button id="did" type="button"
+     onclick="didRun()"
+    >[ 1 ] Function Where JavaScript did Run</button>
+    <br>
+    <button id="didnot" type="button"
+     onclick="didNotRun()"
+    >[ 2 ] Function Where JavaScript DID NOT Run</button>
+   <input id="submitButton" style="display:none" type="submit" value="submit">
+   </form>
+  </section>
+</article>
+
+ <br><br>
+
+ <footer>  
+  <section><p>NOTE - this repo is meant to be a starting point. Edit, add, subtract, rearrange, etc. - as Needed. </p></section>
+  <hr>
+  <aside>
+  <p>For an example with instructions click the link to the video below: </p>
+  <div>  
+   <a href="javascript:void(0)" target="_blank" rel="external">
+    <img class="footImg" style="width: 350px" src="https://practicing.xyz/_Support/img/youtube-light.png" alt="youtube link">
+   </a>   
+  </div>
+  </aside>
+ </footer>
+
+ <!-----------------------------------------------------------------------
+                           JS SCRIPT SUPPORT 
+ ------------------------------------------------------------------------->
+ <!-- For copy/paste -->
+ <textarea name="copyPaste" id="copyPaste" style="display:none"></textarea>
+ <!-- For excess Instruction items -->
+ <pre id="excessExample"></pre>
+
+
+ <!-- For example purposes -->
+ <script>
+
+  var out = document.getElementById("out");
+  var phpNote = document.getElementById("phpNote");
+  var noteAboutPHP = "<strong>NOTE</strong> - this should be used on a <strong>PHP</strong> webpage. This HTML file is for example purposes and meant to communicate the general idea.";
+  var outMsg = `JavaScript did run in the browser. <br>
+  Again ` + noteAboutPHP;
+
+  phpNote.innerHTML = noteAboutPHP;
+
+  var submitButton = document.getElementById("submitButton");
+  // Button [ 1 ]
+  function didRun() {   
+   didJavaScriptFunctionRun();
+   setTimeout(function() {
+    if ( didJavaScriptFunctionRunCheck == 1 ) {
+     console.log(outMsg);
+     setTimeout(function() { submitButton.click(); }, 200);
+    } else { // exit function
+     setTimeout( function() { return; }, 100);
+    }
+    out.innerHTML = outMsg;
+   }, 1000);
+  }
+  // Button [ 2 ]
+  function didNotRun() {  
+   if ( didJavaScriptFunctionRunCheck == 1 ) {
+    console.log(outMsg);
+   } else { // exit function
+    out.innerHTML = outMsg.replace("did", "<span class='red'>DID NOT</span>");  
+    setTimeout( function() { return; }, 100);
+   }  
+  }
+
+  // Show hide example insturctions/use
+  function showHideExample(cur) {
+   if (cur.innerText.indexOf("Show") > -1) {
+    cur.nextElementSibling.style.display = "";
+    cur.innerText = cur.innerText.replace("Show", "Hide");
+   } else {
+    cur.nextElementSibling.style.display = "none";
+    cur.innerText = cur.innerText.replace("Hide", "Show");
+   }
+  }
+  var copyPaste = document.getElementById("copyPaste");
+  var example = document.getElementsByClassName("example");
+  for (i = 0; i < example.length; i++) {
+   example[i].addEventListener("mouseover", function() {
+    this.title = "Click to Copy to Clipboard";
+   });
+   example[i].addEventListener("mousedown", function() {
+    this.style.border = "6px solid black";
+   });  
+   example[i].addEventListener("mouseup", function() {
+    this.style.border = "";
+   });    
+   example[i].addEventListener("click", function() {   
+    copyPaste.innerText = this.textContent.replace(/\s{3,}/g, " ");;
+    copyPaste.select();
+    navigator.clipboard.writeText(copyPaste.innerText);
+   });    
+  }
+ </script>
+ <!-- AJAX to use README instructions -->
+ <script>
+  var exampleArea = document.getElementById("exampleArea");
+  var excessExample = document.getElementById("excessExample");
+  var example = document.getElementsByClassName("example");
+  var exampleLen = example.length;
+
+  var ajaxREADME = new XMLHttpRequest();
+  ajaxREADME.onload = function() {
+   let mdText = this.response;
+   let mdArr = mdText.split("\`\`\`");
+   let balI = 0;
+   for (i in mdArr) {
+    if (i%2 != 0) {
+     if (example[balI]) {
+      example[balI].innerText = mdArr[i].replace("markdown", "");
+      balI++;
+     } else {
+      // dump here for miss-match
+      excessExample.innerHTML += mdArr[i];
+     }   
+    }
+   }  
+  };
+  var ajaxREADMEUrl;
+  if (location.href.indexOf("localhost") > -1) {
+   ajaxREADMEUrl = "README.md";
+  } else {
+   ajaxREADMEUrl = "https://raw.githubusercontent.com/nobedee/didJavaScriptFunctionRun/main/README.md";
+  }
+  ajaxREADME.open("GET", ajaxREADMEUrl, true);
+  ajaxREADME.send();
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+This is the folder where the randomly generated files are temporarily stored.
