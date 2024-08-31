@@ -13,9 +13,10 @@
 
 <br>
 
-`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html)
+`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://isocialPractice.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html)
 
-<!--`Ctrl + click` to view instructional video on [![YouTube](support/video.jpg)](CHANGE)-->
+`Ctrl + click` below to view instructional video:<br>
+[![YouTube](support/video.jpg)](https://youtu.be/1mR70NaNhZ4)
 
 First and most importantly - be aware that incorrectly implementing this template can cause unexpected results; and that editing any of the files located in the ` didJavaScriptFunctionRun/scripts ` folder can possibly delete all files and folders on you machine. Both local and remote. If you edit be sure you know what you're doing!
 
@@ -38,7 +39,7 @@ By using this template, you accept and agree to these terms.
 
 This template requires linking supporting JavaScript and PHP files in the order specified in the instructions and/or example(s). Unless you have an intermediate to expert knowledge of JavaScript and PHP, it is recommended to follow the sequence of support scripts and files as illustrated in the examples and instructions provided in this repository.
 
-The template is designed for simple forms. A good example use for this template is a feedback form with one to several severl form elements (<em>other than submit button</em>). An example use of this template is provided. On the example page, click "Show Example Use" to expand simple use case that includes snippets of how this template should be implemented. `Ctrl + click` to see an example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/jhauga/didJavaScriptFunctionRun/blob/main/index.html).
+The template is designed for simple forms. A good example use for this template is a feedback form with one to several severl form elements (<em>other than submit button</em>). An example use of this template is provided. On the example page, click "Show Example Use" to expand simple use case that includes snippets of how this template should be implemented. `Ctrl + click` to see an example of [didJavaScriptFunctionRun.js](https://isocialPractice.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html).
 
 The goal of this template is to check that the page was loaded in a browser, and then - on the server; handle the response accoringly. How the server hanldes the reponse is to this template what replacing images and copy is to a promotional banner template. 
 
@@ -174,7 +175,7 @@ On step 6 (<em>last step</em>) the template can be utiilized. Change the marked 
 ```markdown
 mkdir didJavaScriptFunctionRun &&\
 cd didJavaScriptFunctionRun &&\
-curl https://codeload.github.com/jhauga/didJavaScriptFunctionRun/tar.gz/main |\
+curl https://codeload.github.com/isocialPractice/didJavaScriptFunctionRun/tar.gz/main |\
 tar -xz --strip=2 didJavaScriptFunctionRun-main/didJavaScriptFunctionRun &&\
 cd ..
 ```
