@@ -13,7 +13,7 @@
 
 <br>
 
-`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://isocialPractice.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html)
+`Ctrl + click` to see example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html)
 
 `Ctrl + click` below to view instructional video:<br>
 [![YouTube](support/video.jpg)](https://youtu.be/1mR70NaNhZ4)
@@ -39,7 +39,7 @@ By using this template, you accept and agree to these terms.
 
 This template requires linking supporting JavaScript and PHP files in the order specified in the instructions and/or example(s). Unless you have an intermediate to expert knowledge of JavaScript and PHP, it is recommended to follow the sequence of support scripts and files as illustrated in the examples and instructions provided in this repository.
 
-The template is designed for simple forms. A good example use for this template is a feedback form with one to several severl form elements (<em>other than submit button</em>). An example use of this template is provided. On the example page, click "Show Example Use" to expand simple use case that includes snippets of how this template should be implemented. `Ctrl + click` to see an example of [didJavaScriptFunctionRun.js](https://isocialPractice.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html).
+The template is designed for simple forms. A good example use for this template is a feedback form with one to several severl form elements (<em>other than submit button</em>). An example use of this template is provided. On the example page, click "Show Example Use" to expand simple use case that includes snippets of how this template should be implemented. `Ctrl + click` to see an example of [didJavaScriptFunctionRun.js](https://jhauga.github.io/htmlpreview.github.com/?https://github.com/isocialPractice/didJavaScriptFunctionRun/blob/main/index.html).
 
 The goal of this template is to check that the page was loaded in a browser, and then - on the server; handle the response accoringly. How the server hanldes the reponse is to this template what replacing images and copy is to a promotional banner template. 
 
