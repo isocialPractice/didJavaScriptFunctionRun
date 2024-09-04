@@ -247,7 +247,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
    if ($comment == true and $email == true and $emailErr == "") {
   // show form server handling of form submitted when JavaScript did not run in browser
-  mail("itWorked@practicing.xyz","Web Comment", "no",$email);
+  mail("yourEmail@address","Web Comment", "no",$email);
  } 
  echo "";   
   
