@@ -18,7 +18,9 @@
 `Ctrl + click` below to view instructional video:<br>
 [![YouTube](support/video.jpg)](https://youtu.be/1mR70NaNhZ4)
 
-First and most importantly - be aware that incorrectly implementing this template can cause unexpected results; and that editing any of the files located in the ` didJavaScriptFunctionRun/scripts ` folder can possibly delete all files and folders on you machine. Both local and remote. If you edit be sure you know what you're doing!
+First and most importantly - be aware that incorrectly implementing this template can cause unexpected results.
+
+**SECURITY** - version 1.0.0 of this template had serious security flaws. If you installed it before version 1.1.0, replace the ` didJavaScriptFunctionRun ` folder on your server with the current one; nothing on your pages needs to change. The installed version is in ` didJavaScriptFunctionRun/VERSION `, and a folder without that file is 1.0.0. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## LEGAL DISCLAIMER AND USE AGREEMENT
 
@@ -55,7 +57,7 @@ How the template works - first it checks to see if JavaScript was run in the bro
 1. Call the main function `didJavaScriptFunctionRun()` which sets a switch, and genereates a random sequence of data
 according to the switch status.
 2. Uses AJAX to ouput to and store form data for php.
-3. Makes a random php file from that ouput.
+3. Has the server make a random folder and file from that output.
 4. Uses the **make_random_file.php** file to update the form field (<em>see instructions below</em>) via AJAX response.
    - The form data is then used in the php file "didJavaScriptFunctionRun.php" to store the output in the php variable 
 ` $didJavaScriptFunctionRunID `; which is then utilized by supporting scripts.
@@ -72,45 +74,19 @@ according to the switch status.
 4. Utilize switch variables and php file handling functions to set final switch variables that are then handled by supporting scripts.
 </details>
 
-<strong>IMPORTANT SECURITY</strong> - The below file should not be altered. Especially the lines utulizing "shell_exec()".
-
-<strong>IMPORTANT SECURITY</strong> - If the statements passed to "shell_exec()" include a wildcard i.e. `.*` in 
-lieu of `*` all files and folders will be deleted. If altered and ` -maxdepth 1 ` is removed - ALL SERVER FILES REMOVED!
-
 <details>
 <summary>The <strong>make_random_file.php</strong> file in the "didJavaScriptFunctionRun/scripts" folder will: </summary>
 
-<strong>IMPORTANT</strong> - here be mosters - on step 1.
-
-1. Delete any random folders and files in the "tmp" folder that are 1 day or older.
-   - **IMPORTANT SECURITY** - if the executables for this step are altered the server 
-   could be cleared- all files and folders deleted.
-   - **IMPORTANT** - unless you have an expert understanding of php **DO NOT** edit the 
-   satements passed to the ` shell_exec() ` calls.
-   - **NOTE** - these are only deleted when the page is opened in a browser so you may 
-     want to periodically check and see if all random folders are deleted.
-   - Please report any issues or vulnerabilites with this.
-2. Call the function ` check_header_did_javascript_function_run() ` in "check_header_did_javascript_function_run.php" 
+1. Call the function ` check_header_did_javascript_function_run() ` in "check_header_did_javascript_function_run.php" 
 to check the headers of the request, setting switch variables accordingly.
-3. Use query string from the random characters generated in didJavaScriptFunctionRun() call
-to create random files and folders.
-   - **NOTE** - the query string is cleaned, but please report any vulnerablities found.
-4. Use these files to verify JavaScript ran.
-5. Delete the duplicate of **template_check.php**.
-6. After 5 minutes delete random folder and file created in "tmp" folder.
-   - **NOTE** - this will start a process on the server for 5 minutes.
-   - **NOTE** - if no input or button HTML elements are clicked and the page is closed an AJAX call
-   to "deleteTmpDidJavaScriptFunctionRun.js" is made, which will delete "tmp" files; ending the process.
-   - Please report any issues or vulnerabilites with this.
-
-</details>
-
-<details>
-<summary>The <strong>template_check.php</strong> file in the "didJavaScriptFunctionRun/scripts" folder will: </summary>
-
-1. Uses the random characters from make_random_file.php 
-to output contents of text file (*should be yes*) for initial JavaScript check
-2. Will delete the text file afterwards.
+2. Accept only the 8 random letters generated in the didJavaScriptFunctionRun() call, and refuse any other
+request before anything is written.
+3. Delete any random folders and files in the "tmp" folder that are older than 30 minutes.
+4. Use the random letters to create a random folder and file in the "tmp" folder, which are used to verify JavaScript ran.
+5. Answer ` yes ` so the browser knows the random file exists.
+   - **NOTE** - the random folder is deleted when the form is submitted, when the page is closed without
+   a click on an input or button element (see "deleteTmpDidJavaScriptFunctionRun.js"), or after 30 minutes.
+   - Please report any issues or vulnerabilities with this.
 
 </details>
 
@@ -129,18 +105,18 @@ which will delete the random "tmp" files that were created for JavaScript check.
 <summary>The <strong>delete_random_file.php</strong> file in the "didJavaScriptFunctionRun/scripts" folder will: </summary>
 
 1. Be called when the window closes, page is refreshed, or after the form is submitted.
-2. Delete the "tmp" files if they still exists on the server.
-   - this will end any processes that have been prolonged in regards to removing the tmp files.
+2. Delete the "tmp" files if they still exist on the server.
+   - only the 8 random letters are accepted; any other request is refused.
    
 </details>
 
 <details>
 <summary>The <strong>clean_random_character_function.php</strong> file in the "didJavaScriptFunctionRun/scripts" folder will:</summary>
 
-1. Clean the random characters or data passed to the **didJavaScriptFunctionRunID** hidden 
-form/input element so the support scripts can handle the data correctly.
-   - Mainly this ensures that the "tmp" folder is the target for creating, checking, and deleting the
-   tmp files that are used to check if JavaScript ran on the server.
+1. Validate the random characters or data passed to the **didJavaScriptFunctionRunID** hidden 
+form/input element, returning the value only when it holds letters, digits, and underscores, and an
+empty string otherwise.
+   - This keeps the value safe to use in "tmp" file paths and to echo back into the page.
 </details>
 
 <details>
@@ -167,8 +143,6 @@ in a browser or not.
 ## Instructions:
 
 **NOTE** - implementing, linking, including, and requring support files and scripts in any way differently than what is instructed below may result in unexpected results i.e. form not submitting.
-
-**SECURITY NOTE** - changing, editing, renaming, and/or moving support files and scripts could potentially lead to unexpected deletion of files and folders on the server. Modifying commands passed to scripts utilizing the php function  ` shell_exec() ` could potentially **delete all files and folders on the server**.
 
 On a brighter note - these steps are mostly copy/paste. The end result of step 1 is required and can be copied and pasted if using a Linux like OS. From step 2 to 5 this tool is intended to be implemented as instructed and is intended to be used on simple php/html forms that uses the form attribute **action** = ` "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" `. 
 
@@ -211,7 +185,7 @@ cd ..
 4. **Step 4** - At the **beginning** of the HTML **form element** (<em>right after form opening tag</em>) copy and paste the below HTML, JavaScript, and php elements. <br>
 ```markdown
 
- <input type="text" value="<?php echo $didJavaScriptFunctionRunID; ?>" disabled style="display: none; border:none" id="didJavaScriptFunctionRunID" name="didJavaScriptFunctionRunID"> 
+ <input type="text" value="<?php echo htmlspecialchars($didJavaScriptFunctionRunID, ENT_QUOTES, 'UTF-8'); ?>" disabled style="display: none; border:none" id="didJavaScriptFunctionRunID" name="didJavaScriptFunctionRunID"> 
  <script>{let didJavaScriptFunctionRunCheck_ID = document.getElementById("didJavaScriptFunctionRunID"); 
  didJavaScriptFunctionRunCheck_ID.removeAttribute("disabled");let checkSessionDidJavaScriptFunctionRun = sessionStorage.getItem("didJavaScriptRun");if (checkSessionDidJavaScriptFunctionRun == null) { sessionStorage.setItem("didJavaScriptRun", "1"); didJavaScriptFunctionRun();} else { sessionStorage.removeItem("didJavaScriptRun"); let sessionDidJavaScriptFunctionRunCheck_randomCharacters = sessionStorage.getItem("didJavaScriptFunctionRunCheck_randomCharacters"); document.getElementById("didJavaScriptFunctionRunID").setAttribute("value", sessionDidJavaScriptFunctionRunCheck_randomCharacters); }}</script>  
  
@@ -261,7 +235,7 @@ cd ..
 
   /* NOTE - if no submit button id then add one and change it here or a variation of this method.    */
   /*        if not disabled form will not submit on second press and run will created random folder, */
-  /*        leaving them there for a day before deleting. */
+  /*        leaving them there for up to 30 minutes before deleting. */
  
   /* END - PHP AS NEEDED ***************************************************************             */
   /* ***********************************************************************************             */

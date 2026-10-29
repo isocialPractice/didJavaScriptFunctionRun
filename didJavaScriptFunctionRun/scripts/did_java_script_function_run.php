@@ -1,26 +1,25 @@
 <?php
  // did_java_script_function_run
  // Final check, storing 1 or 0 in the main variable.
- 
- // Check if string was passed to input.
- if (strlen($didJavaScriptFunctionRunID) > 1) {
-  // Clean
-/**************** WHAT FUNCTION DOES *
-  $didJavaScriptFunctionRunID = trim($didJavaScriptFunctionRunID); 
-  $didJavaScriptFunctionRunID = htmlspecialchars($didJavaScriptFunctionRunID); 
-  $didJavaScriptFunctionRunID = preg_replace('/[.\/=$\*]/', "", $didJavaScriptFunctionRunID);
-***************** WHAT FUNCTION DOES */
-  $didJavaScriptFunctionRunID = clean_random_character_function($didJavaScriptFunctionRunID);  
- } 
- 
- // turn on variable
- if (file_exists("$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID/file.txt")) {   // Blocks where JavaScript did run.
-  // Remove the random files created.
-  shell_exec("rm \"$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID/file.txt\"");
-  shell_exec("rmdir \"$did_javascript_function_run_path/tmp/$didJavaScriptFunctionRunID\"");  
-  $didJavaScriptFunctionRun = 1;
- } else {
-  $didJavaScriptFunctionRun = 0;
+
+ include_once(__DIR__ . "/clean_random_character_function.php");
+
+ // Keep the posted random characters only if they are valid.
+ if (!isset($didJavaScriptFunctionRunID)) {
+  $didJavaScriptFunctionRunID = "";
  }
- 
+ $didJavaScriptFunctionRunID = clean_random_character_function($didJavaScriptFunctionRunID);
+
+ // turn on variable
+ $didJavaScriptFunctionRun = 0;
+ if ($didJavaScriptFunctionRunID != "") {
+  $random_folder_did_javascript_function_run = dirname(__DIR__) . "/tmp/" . $didJavaScriptFunctionRunID;
+  if (is_file($random_folder_did_javascript_function_run . "/file.txt")) {   // Blocks where JavaScript did run.
+   // Remove the random files created.
+   @unlink($random_folder_did_javascript_function_run . "/file.txt");
+   @rmdir($random_folder_did_javascript_function_run);
+   $didJavaScriptFunctionRun = 1;
+  }
+ }
+
 ?>
